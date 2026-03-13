@@ -3,7 +3,7 @@ import { createHmac, randomBytes, scryptSync, timingSafeEqual } from "node:crypt
 import { existsSync, mkdirSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { DatabaseSync } from "node:sqlite";
+import Database from "better-sqlite3";
 import { getEnvVar } from "./getEnvVar.js";
 
 const PORT = Number.parseInt(getEnvVar("PORT", false), 10) || 3000;
@@ -20,7 +20,7 @@ const dailySnapshotPath =
   getEnvVar("MARKET_DAILY_SNAPSHOT_PATH", false) || join(__dirname, "../data/daily-market-snapshot.json");
 
 mkdirSync(dirname(dbPath), { recursive: true });
-const db = new DatabaseSync(dbPath);
+const db = new Database(dbPath);
 db.exec(`
   CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
