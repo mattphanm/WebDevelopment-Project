@@ -132,3 +132,6 @@ dist
 # macOS and IDE files
 .idea
 .DS_Store
+
+# Local auth database
+backend/data/*.sqlite

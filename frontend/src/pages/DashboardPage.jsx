@@ -1,4 +1,4 @@
-import { useId } from 'react';
+import { useId, useState } from 'react';
 
 function DashboardPage({
   inputs,
@@ -7,11 +7,22 @@ function DashboardPage({
   onSavePlan,
   recommendationName,
 }) {
+  const [planNameInput, setPlanNameInput] = useState('');
+  const [showPlanNamePrompt, setShowPlanNamePrompt] = useState(false);
+
   const timeHorizonId = useId();
   const amountId = useId();
   const riskId = useId();
   const contributionFrequencyId = useId();
   const monthlyContributionId = useId();
+  const planNameId = useId();
+
+  const submitPlanSave = () => {
+    const customName = planNameInput.trim();
+    onSavePlan(customName);
+    setPlanNameInput('');
+    setShowPlanNamePrompt(false);
+  };
 
   return (
     <section className="section">
@@ -97,7 +108,11 @@ function DashboardPage({
                 <button className="button" type="submit">
                   Update Inputs
                 </button>
-                <button className="button ghost-button" type="button" onClick={onSavePlan}>
+                <button
+                  className="button ghost-button"
+                  type="button"
+                  onClick={() => setShowPlanNamePrompt(true)}
+                >
                   Save as Plan
                 </button>
               </div>
@@ -111,6 +126,36 @@ function DashboardPage({
                 <div className="stat-value stat-value-small">{recommendationName}</div>
               </div>
             </div>
+            {showPlanNamePrompt ? (
+              <div className="dashboard-save-prompt" role="dialog" aria-modal="true" aria-label="Name your plan">
+                <label htmlFor={planNameId}>
+                  Plan name
+                  <input
+                    id={planNameId}
+                    type="text"
+                    value={planNameInput}
+                    onChange={(event) => setPlanNameInput(event.target.value)}
+                    placeholder="My dashboard plan"
+                    autoFocus
+                  />
+                </label>
+                <div className="form-actions">
+                  <button className="button" type="button" onClick={submitPlanSave}>
+                    Save Plan
+                  </button>
+                  <button
+                    className="button ghost-button"
+                    type="button"
+                    onClick={() => {
+                      setShowPlanNamePrompt(false);
+                      setPlanNameInput('');
+                    }}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            ) : null}
           </aside>
         </div>
       </div>

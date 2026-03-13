@@ -1,0 +1,24 @@
+{
+  "updatedAt": "2026-03-13",
+  "source": "manual",
+  "quotes": [
+    {
+      "symbol": "SGOV",
+      "name": "Treasury Bond Ladder",
+      "price": 100.56,
+      "changePercent": 0.09
+    },
+    {
+      "symbol": "AOR",
+      "name": "Balanced Index Portfolio",
+      "price": 60.44,
+      "changePercent": 0.37
+    },
+    {
+      "symbol": "SCHD",
+      "name": "Dividend Growth Basket",
+      "price": 82.15,
+      "changePercent": 0.38
+    }
+  ]
+}

@@ -59,39 +59,3 @@ export const investmentOptions = [
     ],
   },
 ];
-
-export const defaultPlans = [
-  {
-    id: 1,
-    title: 'Starter Income Plan',
-    timeHorizon: '1-3 years',
-    amount: '$8,000',
-    option: 'Treasury Bond Ladder',
-    monthlyContribution: '$200',
-    expectedYield: '4.1%',
-    expectedAnnualProfit: '$380',
-    startedAt: '2025-11-10T00:00:00Z',
-  },
-  {
-    id: 2,
-    title: 'Balanced Growth Plan',
-    timeHorizon: '5-10 years',
-    amount: '$12,500',
-    option: 'Balanced Index Portfolio',
-    monthlyContribution: '$300',
-    expectedYield: '6.3%',
-    expectedAnnualProfit: '$916',
-    startedAt: '2025-08-20T00:00:00Z',
-  },
-  {
-    id: 3,
-    title: 'Long-Term Dividend Plan',
-    timeHorizon: '10+ years',
-    amount: '$20,000',
-    option: 'Dividend Growth Basket',
-    monthlyContribution: '$450',
-    expectedYield: '7.4%',
-    expectedAnnualProfit: '$1,718',
-    startedAt: '2025-02-05T00:00:00Z',
-  },
-];

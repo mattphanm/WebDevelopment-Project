@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import LivePlanTrackers from '../components/LivePlanTrackers';
 import RecommendationCard from '../components/RecommendationCard';
 
 function RecommendationsPage({ options, preferredRisk, onSavePlan }) {
@@ -38,6 +39,8 @@ function RecommendationsPage({ options, preferredRisk, onSavePlan }) {
             <RecommendationCard key={option.id} option={option} onSavePlan={onSavePlan} />
           ))}
         </div>
+
+        <LivePlanTrackers options={options} />
 
         {shownOptions.length === 0 ? (
           <p className="section-text" aria-live="polite">
