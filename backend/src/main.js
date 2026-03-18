@@ -369,7 +369,12 @@ app.get("/api/market/etfs/:symbol/history", async (req, res) => {
 
 if (existsSync(frontendDistPath)) {
   app.use(express.static(frontendDistPath));
-  app.get("/{*path}", (req, res) => {
+
+  app.get("/", (req, res) => {
+    res.sendFile(join(frontendDistPath, "index.html"));
+  });
+
+  app.get("/*path", (req, res) => {
     res.sendFile(join(frontendDistPath, "index.html"));
   });
 } else {
