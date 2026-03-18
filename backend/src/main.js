@@ -16,6 +16,7 @@ const DEFAULT_SYMBOLS = ["SGOV", "AOR", "SCHD"];
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const dbPath = getEnvVar("AUTH_DB_PATH", false) || join(__dirname, "../data/auth.sqlite");
+const frontendDistPath = getEnvVar("FRONTEND_DIST_PATH", false) || join(__dirname, "../../frontend/dist");
 const dailySnapshotPath =
   getEnvVar("MARKET_DAILY_SNAPSHOT_PATH", false) || join(__dirname, "../data/daily-market-snapshot.json");
 
@@ -365,6 +366,17 @@ app.get("/api/market/etfs/:symbol/history", async (req, res) => {
     res.status(502).json({ error: "Failed to fetch ETF history.", detail: String(error?.message || error) });
   }
 });
+
+if (existsSync(frontendDistPath)) {
+  app.use(express.static(frontendDistPath));
+  app.get("/{*path}", (req, res) => {
+    res.sendFile(join(frontendDistPath, "index.html"));
+  });
+} else {
+  app.get("/", (req, res) => {
+    res.status(200).send("Backend is running. Build frontend and set FRONTEND_DIST_PATH to serve UI.");
+  });
+}
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}.  CTRL+C to stop.`);

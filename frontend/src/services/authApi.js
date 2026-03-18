@@ -1,4 +1,4 @@
-const API_BASE = (import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:3000').replace(/\/$/, '');
+import { API_BASE } from './apiBase';
 
 async function requestJson(path, { method = 'GET', body, token } = {}) {
   const headers = {};
